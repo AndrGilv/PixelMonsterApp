@@ -1,4 +1,4 @@
-package com.example.pixelmonsterapp3
+package com.example.pixelmonsterapp3.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,8 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.pixelmonsterapp3.ui.theme.PixelMonsterApp3Theme
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : ComponentActivity() {
+class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

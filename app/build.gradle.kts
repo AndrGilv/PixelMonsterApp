@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("kapt") version "1.5.30"
+    kotlin("plugin.parcelize") version "1.5.21"
+    kotlin("kapt") version "1.5.21"
 }
 
 android {
@@ -85,6 +86,10 @@ dependencies {
     androidTestImplementation(Libraries.AndroidX.Room.roomTesting)
 
     implementation(Libraries.AndroidX.Collections.collectionKtx)
+    implementation(Libraries.AndroidX.Core.coreKtx)
+    implementation(Libraries.AndroidX.Lifecycle.lifecycleLiveDataCoreKtx)
+    implementation(Libraries.AndroidX.Lifecycle.lifecycleReactiveStreamsKtx)
+    implementation(Libraries.AndroidX.Lifecycle.lifecycleViewModelCompose)
 
     implementation(Libraries.AndroidX.Navigation.navigationRuntimeKtx)
     implementation(Libraries.AndroidX.Navigation.navigationFragmentKtx)
