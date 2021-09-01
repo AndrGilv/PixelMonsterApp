@@ -6,7 +6,10 @@ import com.example.pixelmonsterapp3.domain.repository.MonsterRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GenerateRandomMonster @Inject constructor(
+/**
+ *  () -> Flow<Result< Unit >>
+ * **/
+class GenerateRandomMonsterUseCase @Inject constructor(
     private val monsterRepository: MonsterRepository,
 ){
 

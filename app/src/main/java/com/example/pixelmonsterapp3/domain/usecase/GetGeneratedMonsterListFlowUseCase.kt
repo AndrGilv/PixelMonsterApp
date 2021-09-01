@@ -6,7 +6,10 @@ import com.example.pixelmonsterapp3.domain.repository.MonsterRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetGeneratedMonsterListFlow @Inject constructor(
+/**
+ *  () -> Flow<Result<List< Monster >>>
+ * **/
+class GetGeneratedMonsterListFlowUseCase @Inject constructor(
     private val monstersRepository: MonsterRepository,
 ){
     operator fun invoke(): Flow<Result<List<Monster>>> =

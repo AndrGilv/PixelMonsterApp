@@ -5,7 +5,10 @@ import com.example.pixelmonsterapp3.domain.repository.MonsterRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class DeleteMonster @Inject constructor(
+/**
+ *  (id: Int) -> Flow<Result< Unit >>
+ * **/
+class DeleteMonsterUseCase @Inject constructor(
     private val monstersRepository: MonsterRepository,
 ){
     operator fun invoke(id: Int): Flow<FinishableResult> =
