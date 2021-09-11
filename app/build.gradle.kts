@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("plugin.parcelize") version "1.5.21"
-    kotlin("kapt") version "1.5.21"
+    id("com.android.application") version Libraries.AndroidPlugin.VERSION
+    kotlin("android") version Libraries.KotlinPlugin.VERSION
+    kotlin("plugin.parcelize") version Libraries.KotlinPlugin.VERSION
+    kotlin("kapt") version Libraries.KotlinPlugin.VERSION
 }
 
 android {
@@ -38,7 +38,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.1"
+        kotlinCompilerExtensionVersion = Libraries.AndroidX.Compose.VERSION
     }
     packagingOptions {
         resources {

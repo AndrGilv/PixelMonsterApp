@@ -20,12 +20,11 @@ object Libraries {
             const val VERSION = "1.1.0-alpha03"
 
             const val ui = "androidx.compose.ui:ui:$VERSION"
-            const val uiToolingPreview = "androidx.compose.ui:ui:$VERSION"
+            const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$VERSION"
             const val material = "androidx.compose.material:material:$VERSION"
-
             const val uiTestJunit = "androidx.compose.ui:ui-test-junit4:$VERSION"
-
             const val uiTooling = "androidx.compose.ui:ui-tooling:$VERSION"
+            const val compiler = "androidx.compose.compiler:compiler:$VERSION"
         }
 
         object Lifecycle {
