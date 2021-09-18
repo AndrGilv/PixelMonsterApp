@@ -11,7 +11,7 @@ import javax.inject.Inject
  * **/
 class GetGeneratedMonsterListFlowUseCase @Inject constructor(
     private val monstersRepository: MonsterRepository,
-){
+) {
     operator fun invoke(): Flow<Result<List<Monster>>> =
-        monstersRepository.getGeneratedMonsterListFlow()
+        monstersRepository.getMonsterListFlow()
 }
