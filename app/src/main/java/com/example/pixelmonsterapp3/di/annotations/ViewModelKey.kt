@@ -1,4 +1,4 @@
-package com.example.loanapp.di.annotations
+package com.example.pixelmonsterapp3.di.annotations
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
@@ -7,5 +7,5 @@ import kotlin.reflect.KClass
 @MapKey
 @Target(AnnotationTarget.FUNCTION)
 annotation class ViewModelKey(
-    val value: KClass<out ViewModel>
+    val value: KClass<out ViewModel>,
 )

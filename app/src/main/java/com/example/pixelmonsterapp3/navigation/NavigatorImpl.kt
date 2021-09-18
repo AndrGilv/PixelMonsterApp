@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
+// QrouterImpl
 @Singleton
 class NavigatorImpl @Inject constructor() : Navigator {
 

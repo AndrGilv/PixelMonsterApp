@@ -13,25 +13,34 @@ import com.example.pixelmonsterapp3.presentation.monsterlist.MonsterListScreenSi
 import com.example.pixelmonsterapp3.presentation.monsterlist.MonsterListState
 import com.example.pixelmonsterapp3.presentation.toParcelableList
 import com.example.pixelmonsterapp3.ui.theme.PixelMonsterApp3Theme
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flowOf
 
 @Composable
 fun MonsterListScreen(
     stateFlow: StateFlow<MonsterListState>,
     sideEffectFlow: Flow<MonsterListScreenSideEffect>,
-    navigateToDetails: (id: Int)->Unit,
-) = BaseScreen(stateFlow = stateFlow, sideEffectFlow = sideEffectFlow, handleSideEffects = {}) { state ->
-    LazyColumn{
+    navigateToDetails: (id: Int) -> Unit,
+    addNewMonster: () -> Unit,
+) = BaseScreen(stateFlow = stateFlow,
+    sideEffectFlow = sideEffectFlow,
+    handleSideEffects = {}) { state ->
+    LazyColumn {
         item {
             Text(
                 text = "list:",
+                modifier = Modifier.clickable {
+                    addNewMonster()
+                },
             )
         }
-        if(state is State.Success){
-            items(state.value){ monster ->
+        if (state is State.Success) {
+            items(state.value) { monster ->
                 Text(
                     text = "id = ${monster.id}",
-                    modifier = Modifier.clickable{
+                    modifier = Modifier.clickable {
                         navigateToDetails(monster.id)
                     }
                 )
@@ -45,9 +54,12 @@ fun MonsterListScreen(
 fun MonsterListScreenPreview() {
     PixelMonsterApp3Theme {
         MonsterListScreen(
-            stateFlow = MutableStateFlow(State.Success(value = Monster.randomList().toParcelableList())),
+            stateFlow = MutableStateFlow(
+                State.Success(value = Monster.randomList().toParcelableList())
+            ),
             sideEffectFlow = flowOf(),
             navigateToDetails = {},
+            addNewMonster = {},
         )
     }
 }

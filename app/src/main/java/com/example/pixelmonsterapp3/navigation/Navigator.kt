@@ -3,6 +3,7 @@ package com.example.pixelmonsterapp3.navigation
 import androidx.navigation.NavOptions
 import kotlinx.coroutines.flow.Flow
 
+// QRouter
 interface Navigator {
 
     val destinations: Flow<NavigatorEvent>

@@ -8,7 +8,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.pixelmonsterapp3.composable
 import com.example.pixelmonsterapp3.di.ViewModelFactories
-import com.example.pixelmonsterapp3.navigation.*
+import com.example.pixelmonsterapp3.navigation.MonsterDetailsDestination
+import com.example.pixelmonsterapp3.navigation.MonsterListDestination
+import com.example.pixelmonsterapp3.navigation.Navigator
+import com.example.pixelmonsterapp3.navigation.NavigatorEvent
 import com.example.pixelmonsterapp3.presentation.monsterdetails.MonsterDetailsViewModel
 import com.example.pixelmonsterapp3.presentation.monsterlist.MonsterListViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -18,12 +21,12 @@ import kotlinx.coroutines.flow.onEach
 fun NavigationComponent(
     navController: NavHostController,
     navigator: Navigator,
-    assistedFactories: ViewModelFactories
+    assistedFactories: ViewModelFactories,
 ) {
 
     LaunchedEffect("navigation") {
         navigator.destinations.onEach { navigationEvent ->
-            when(navigationEvent){
+            when (navigationEvent) {
                 is NavigatorEvent.Direction -> navController.navigate(
                     route = navigationEvent.route,
                     navOptions = navigationEvent.createNavOptions(),
@@ -47,17 +50,20 @@ fun NavigationComponent(
         composable(MonsterListDestination) {
 
             val monsterListViewModel = viewModel<MonsterListViewModel>(
-                factory = assistedFactories.monsterListViewModelAssistedFactory.create( LocalSavedStateRegistryOwner.current)
+                factory = assistedFactories.monsterListViewModelAssistedFactory.create(
+                    LocalSavedStateRegistryOwner.current
+                )
             )
 
             MonsterListScreen(
                 stateFlow = monsterListViewModel.container.stateFlow,
                 sideEffectFlow = monsterListViewModel.container.sideEffectFlow,
                 navigateToDetails = monsterListViewModel::navigateToMonsterDetails,
+                addNewMonster = monsterListViewModel::generateRandomMonster,
             )
         }
         composable(MonsterDetailsDestination) { backStackEntry ->
-            MonsterDetailsDestination.getArgs( backStackEntry.arguments) { id ->
+            MonsterDetailsDestination.getArgs(backStackEntry.arguments) { id ->
                 val monsterDetailsViewModel = viewModel<MonsterDetailsViewModel>(
                     factory = assistedFactories.monsterDetailsViewModelAssistedFactory.create(
                         monsterId = id,
