@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application") version Libraries.AndroidPlugin.VERSION
-    kotlin("android") version Libraries.KotlinPlugin.VERSION
-    kotlin("plugin.parcelize") version Libraries.KotlinPlugin.VERSION
-    kotlin("kapt") version Libraries.KotlinPlugin.VERSION
+    id("com.android.application") version Dependencies.AndroidPlugin.VERSION
+    kotlin("android") version Dependencies.KotlinPlugin.VERSION
+    kotlin("plugin.parcelize") version Dependencies.KotlinPlugin.VERSION
+    kotlin("kapt") version Dependencies.KotlinPlugin.VERSION
 }
 
 android {
@@ -41,7 +41,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Libraries.AndroidX.Compose.VERSION
+        kotlinCompilerExtensionVersion = Dependencies.AndroidX.Compose.VERSION
     }
     packagingOptions {
         resources {
@@ -51,60 +51,66 @@ android {
 }
 
 dependencies {
+    implementation(project(Dependencies.Project.Feature.monsterList))
+    implementation(project(Dependencies.Project.Feature.monsterDetails))
+    implementation(project(Dependencies.Project.Shared.ui_core))
+    implementation(project(Dependencies.Project.Shared.navigation_core))
+    implementation(project(Dependencies.Project.Shared.monster_api))
+
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(Libraries.AndroidX.Core.coreKtx)
+    implementation(Dependencies.AndroidX.Core.coreKtx)
 
-    implementation(Libraries.AndroidX.Compose.ui)
-    implementation(Libraries.AndroidX.Compose.material)
-    implementation(Libraries.AndroidX.Compose.uiToolingPreview)
-    implementation(Libraries.AndroidX.Compose.compiler)
-    androidTestImplementation(Libraries.AndroidX.Compose.uiTestJunit)
-    debugImplementation(Libraries.AndroidX.Compose.uiTooling)
+    implementation(Dependencies.AndroidX.Compose.ui)
+    implementation(Dependencies.AndroidX.Compose.material)
+    implementation(Dependencies.AndroidX.Compose.uiToolingPreview)
+    implementation(Dependencies.AndroidX.Compose.compiler)
+    androidTestImplementation(Dependencies.AndroidX.Compose.uiTestJunit)
+    debugImplementation(Dependencies.AndroidX.Compose.uiTooling)
 
-    implementation(Libraries.AndroidX.Activity.activityCompose)
+    implementation(Dependencies.AndroidX.Activity.activityCompose)
 
-    testImplementation(Libraries.Junit.core)
-    androidTestImplementation(Libraries.AndroidX.TestExt.junit)
-    androidTestImplementation(Libraries.AndroidX.TestEspresso.espressoCore)
+    testImplementation(Dependencies.Junit.core)
+    androidTestImplementation(Dependencies.AndroidX.TestExt.junit)
+    androidTestImplementation(Dependencies.AndroidX.TestEspresso.espressoCore)
 
-    implementation(Libraries.Dagger.core)
-    kapt(Libraries.Dagger.daggerCompiler)
-    implementation(Libraries.Dagger.daggerAndroidSupport)
-    kapt(Libraries.Dagger.daggerAndroidProcessor)
+    implementation(Dependencies.Dagger.core)
+    kapt(Dependencies.Dagger.daggerCompiler)
+    implementation(Dependencies.Dagger.daggerAndroidSupport)
+    kapt(Dependencies.Dagger.daggerAndroidProcessor)
 
-    implementation(Libraries.KotlinX.kotlinxCoroutinesAndroid)
+    implementation(Dependencies.KotlinX.kotlinxCoroutinesAndroid)
 
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleRuntimeKtx)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleViewModelKtx)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleRuntimeKtx)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleLiveDataKtx)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleLiveDataCoreKtx)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleReactiveStreamsKtx)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleViewModelCompose)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleViewModelSavedState)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleRuntimeKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleRuntimeKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleLiveDataKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleLiveDataCoreKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleReactiveStreamsKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelCompose)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelSavedState)
 
-    implementation(Libraries.AndroidX.Room.roomKtx)
-    implementation(Libraries.AndroidX.Room.roomRuntime)
-    kapt(Libraries.AndroidX.Room.roomCompiler)
-    androidTestImplementation(Libraries.AndroidX.Room.roomTesting)
+    implementation(Dependencies.AndroidX.Room.roomKtx)
+    implementation(Dependencies.AndroidX.Room.roomRuntime)
+    kapt(Dependencies.AndroidX.Room.roomCompiler)
+    androidTestImplementation(Dependencies.AndroidX.Room.roomTesting)
 
-    implementation(Libraries.AndroidX.Collections.collectionKtx)
-    implementation(Libraries.AndroidX.Core.coreKtx)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleLiveDataCoreKtx)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleReactiveStreamsKtx)
-    implementation(Libraries.AndroidX.Lifecycle.lifecycleViewModelCompose)
+    implementation(Dependencies.AndroidX.Collections.collectionKtx)
+    implementation(Dependencies.AndroidX.Core.coreKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleLiveDataCoreKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleReactiveStreamsKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelCompose)
 
-    implementation(Libraries.AndroidX.Navigation.navigationRuntimeKtx)
-    implementation(Libraries.AndroidX.Navigation.navigationFragmentKtx)
-    implementation(Libraries.AndroidX.Navigation.navigationUiKtx)
-    implementation(Libraries.AndroidX.Navigation.composeNavigation)
+    implementation(Dependencies.AndroidX.Navigation.navigationRuntimeKtx)
+    implementation(Dependencies.AndroidX.Navigation.navigationFragmentKtx)
+    implementation(Dependencies.AndroidX.Navigation.navigationUiKtx)
+    implementation(Dependencies.AndroidX.Navigation.composeNavigation)
 
-    implementation(Libraries.Retrofit2.retrofit)
-    implementation(Libraries.Retrofit2.converterMoshi)
-    implementation(Libraries.OkHttp3.okhttp)
-    implementation(Libraries.OkHttp3.loggingInterceptor)
+    implementation(Dependencies.Retrofit2.retrofit)
+    implementation(Dependencies.Retrofit2.converterMoshi)
+    implementation(Dependencies.OkHttp3.okhttp)
+    implementation(Dependencies.OkHttp3.loggingInterceptor)
 
-    implementation(Libraries.Orbit.viewModel)
+    implementation(Dependencies.Orbit.viewModel)
 
-    implementation(Libraries.Accompanist.systemUiController)
+    implementation(Dependencies.Accompanist.systemUiController)
 }

@@ -1,6 +1,5 @@
 package com.example.pixelmonsterapp3.di.modules
 
-import com.example.pixelmonsterapp3.data.network.MonsterApi
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -41,7 +40,7 @@ abstract class NetworkModule {
                 .build()
 
         @Provides
-        fun provideApiService(retrofit: Retrofit): MonsterApi =
-            retrofit.create(MonsterApi::class.java)
+        fun provideApiService(retrofit: Retrofit): com.example.shared_monster_api.data.network.MonsterApi =
+            retrofit.create(com.example.shared_monster_api.data.network.MonsterApi::class.java)
     }
 }

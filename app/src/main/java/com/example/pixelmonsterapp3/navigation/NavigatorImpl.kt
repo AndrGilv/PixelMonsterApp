@@ -1,6 +1,9 @@
 package com.example.pixelmonsterapp3.navigation
 
 import androidx.navigation.NavOptions
+import androidx.navigation.Navigator.Extras
+import com.example.shared_navigation_core.Navigator
+import com.example.shared_navigation_core.NavigatorEvent
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
@@ -30,7 +33,7 @@ class NavigatorImpl @Inject constructor() : Navigator {
     override fun navigate(
         route: String,
         navOptionsBoulder: NavOptions.Builder.() -> Unit,
-        navigatorExtrasBuilder: androidx.navigation.Navigator.Extras.() -> Unit,
+        navigatorExtrasBuilder: Extras.() -> Unit,
     ): Boolean =
         navigationEvents.trySend(
             NavigatorEvent.Direction(
