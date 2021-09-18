@@ -14,6 +14,7 @@ import com.example.pixelmonsterapp3.navigation.Navigator
 import com.example.pixelmonsterapp3.navigation.NavigatorEvent
 import com.example.pixelmonsterapp3.presentation.monsterdetails.MonsterDetailsViewModel
 import com.example.pixelmonsterapp3.presentation.monsterlist.MonsterListViewModel
+import com.example.pixelmonsterapp3.ui.sreens.MonsterDetailsScreen
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -60,6 +61,8 @@ fun NavigationComponent(
                 sideEffectFlow = monsterListViewModel.container.sideEffectFlow,
                 navigateToDetails = monsterListViewModel::navigateToMonsterDetails,
                 addNewMonster = monsterListViewModel::generateRandomMonster,
+                deleteMonster = monsterListViewModel::deleteMonster,
+                deleteAllMonsters = monsterListViewModel::deleteAllMonsters,
             )
         }
         composable(MonsterDetailsDestination) { backStackEntry ->
@@ -75,6 +78,7 @@ fun NavigationComponent(
                     stateFlow = monsterDetailsViewModel.container.stateFlow,
                     sideEffectFlow = monsterDetailsViewModel.container.sideEffectFlow,
                     navigateBack = monsterDetailsViewModel::navigateUp,
+                    deleteMonster = monsterDetailsViewModel::deleteMonster,
                 )
             }
         }

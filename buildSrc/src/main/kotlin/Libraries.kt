@@ -108,4 +108,9 @@ object Libraries {
         private const val VERSION = "4.2.0"
         const val viewModel = "org.orbit-mvi:orbit-viewmodel:$VERSION"
     }
+
+    object Accompanist {
+        private const val VERSION = "0.18.0"
+        const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:$VERSION"
+    }
 }

@@ -23,7 +23,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -102,4 +105,6 @@ dependencies {
     implementation(Libraries.OkHttp3.loggingInterceptor)
 
     implementation(Libraries.Orbit.viewModel)
+
+    implementation(Libraries.Accompanist.systemUiController)
 }
