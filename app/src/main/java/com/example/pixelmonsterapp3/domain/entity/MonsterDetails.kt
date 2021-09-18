@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 import kotlin.random.Random
 
 @Parcelize
-class MonsterDetails(
+data class MonsterDetails(
     val monster: Monster,
     val discoveredBy: MonsterDiscoverer,
     val experience: Int,
@@ -17,7 +17,7 @@ class MonsterDetails(
     val hitChance: Double,
     val dodgeChance: Double,
     val criticalChance: Double,
-) : Parcelable, MonsterInterface by monster{
+) : Parcelable, MonsterInterface by monster {
 
     companion object {
         fun random() = MonsterDetails(
@@ -26,7 +26,7 @@ class MonsterDetails(
             experience = Random.nextInt(100500),
             attributePoints = Random.nextInt(100500),
             maxHealth = Random.nextInt(100),
-            maxDamage = Random.nextDouble(500.0,1000.0),
+            maxDamage = Random.nextDouble(500.0, 1000.0),
             minDamage = Random.nextDouble(500.0),
             criticalDamage = Random.nextDouble(1000.0, 2000.0),
             hitChance = Random.nextDouble(1.0),
@@ -34,6 +34,6 @@ class MonsterDetails(
             criticalChance = Random.nextDouble(1.0),
         )
 
-        fun randomList(size: Int = 10) = (1..size).map{ MonsterDetails.random() }
+        fun randomList(size: Int = 10) = (1..size).map { MonsterDetails.random() }
     }
 }

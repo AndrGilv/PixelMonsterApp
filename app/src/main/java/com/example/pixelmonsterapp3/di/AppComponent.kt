@@ -2,6 +2,7 @@ package com.example.pixelmonsterapp3.di
 
 import android.content.Context
 import com.example.pixelmonsterapp3.di.modules.AppModule
+import com.example.pixelmonsterapp3.di.modules.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -10,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [AndroidSupportInjectionModule::class, AppModule::class]
+    modules = [AndroidSupportInjectionModule::class, AppModule::class, NetworkModule::class]
 )
 interface AppComponent : AndroidInjector<App> {
 

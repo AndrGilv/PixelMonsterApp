@@ -1,32 +1,28 @@
 package com.example.pixelmonsterapp3.data.datasource
 
-import com.example.loanapp.di.annotations.RemoteDataSource
-import com.example.pixelmonsterapp3.domain.entity.*
+import com.example.pixelmonsterapp3.data.network.MonsterApi
+import com.example.pixelmonsterapp3.domain.entity.Monster
+import com.example.pixelmonsterapp3.domain.entity.MonsterDetails
+import com.example.pixelmonsterapp3.domain.entity.Result
+import com.example.pixelmonsterapp3.runApiCall
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@RemoteDataSource
+@Singleton
 class RemoteMonsterDataSourceImpl @Inject constructor(
+    private val api: MonsterApi,
+) : RemoteMonsterDataSource {
 
-) : MonsterDataSource{
+    override fun getMonsters(top: Int, skip: Int): Flow<Result<List<Monster>>> = runApiCall(
+        toEntity = {
+            this.value
+        },
+        query = { api.getMonsters(top, skip) }
+    )
 
-    override fun getRandomMonster(): Flow<Result<Monster>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getGeneratedMonsterListFlow(): Flow<Result<List<Monster>>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getMonsterDetails(id: Int): Flow<Result<MonsterDetails>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun deleteMonster(id: Int): Flow<Result<Unit>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun deleteAllMonsters(): Flow<Result<Unit>> {
-        TODO("Not yet implemented")
-    }
+    override fun getMonsterDetails(id: Int): Flow<Result<MonsterDetails>> = runApiCall(
+        toEntity = { this.toMonsterDetails() },
+        query = { api.getMonsterDetails(id) }
+    )
 }

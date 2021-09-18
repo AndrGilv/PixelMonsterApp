@@ -1,4 +1,4 @@
-package com.example.loanapp.di.annotations
+package com.example.pixelmonsterapp3.di.annotations
 
 import javax.inject.Qualifier
 
