@@ -8,7 +8,7 @@ import kotlin.random.Random
 class MonsterDiscoverer(
     val id: String,
     val name: String,
-) : Parcelable{
+) : Parcelable {
 
     companion object {
         fun random() = MonsterDiscoverer(

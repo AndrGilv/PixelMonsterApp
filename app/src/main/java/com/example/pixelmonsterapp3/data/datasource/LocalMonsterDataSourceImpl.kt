@@ -2,24 +2,20 @@ package com.example.pixelmonsterapp3.data.datasource
 
 import com.example.pixelmonsterapp3.data.database.MonsterDao
 import com.example.pixelmonsterapp3.data.database.toDbEntity
-import com.example.pixelmonsterapp3.di.annotations.IoCoroutineScope
 import com.example.pixelmonsterapp3.domain.entity.FinishableResult
 import com.example.pixelmonsterapp3.domain.entity.Monster
 import com.example.pixelmonsterapp3.domain.entity.MonsterDetails
 import com.example.pixelmonsterapp3.domain.entity.Result
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class LocalMonsterDataSourceImpl @Inject constructor(
     private val monsterDao: MonsterDao,
-    @IoCoroutineScope private val coroutineScope: CoroutineScope,
 ) : LocalMonsterDataSource {
 
     override fun getSavedMonsterListFlow(): Flow<Result<List<Monster>>> =
@@ -34,18 +30,14 @@ class LocalMonsterDataSourceImpl @Inject constructor(
 
     override fun deleteMonster(id: Int): Flow<Result<Unit>> = flow {
         emit(Result.Loading())
-        coroutineScope.launch {
-            monsterDao.deleteMonster(id)
-            emit(Result.Finished)
-        }
+        monsterDao.deleteMonster(id)
+        emit(Result.Finished)
     }
 
     override fun deleteAllMonsters(): Flow<Result<Unit>> = flow {
         emit(Result.Loading())
-        coroutineScope.launch {
-            monsterDao.deleteAllMonsters()
-            emit(Result.Finished)
-        }
+        monsterDao.deleteAllMonsters()
+        emit(Result.Finished)
     }
 
     override fun saveMonsters(monsters: List<Monster>): Flow<FinishableResult> = flow {

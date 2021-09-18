@@ -11,4 +11,4 @@ class ParcelableList<T : Parcelable>(
     fun toList() = list
 }
 
-fun <T: Parcelable> List<T>.toParcelableList() = ParcelableList(this)
+fun <T : Parcelable> List<T>.toParcelableList() = ParcelableList(this)

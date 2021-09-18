@@ -7,6 +7,9 @@ import androidx.savedstate.SavedStateRegistryOwner
 import com.example.pixelmonsterapp3.domain.entity.*
 import com.example.pixelmonsterapp3.domain.usecase.DeleteMonsterUseCase
 import com.example.pixelmonsterapp3.domain.usecase.GetMonsterDetailsUseCase
+import com.example.pixelmonsterapp3.handleFinishableResult
+import com.example.pixelmonsterapp3.handleResult
+import com.example.pixelmonsterapp3.presentation.SideEffect
 import com.example.pixelmonsterapp3.presentation.State
 import dagger.assisted.*
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -25,11 +28,11 @@ class MonsterDetailsViewModel(
     savedStateHandle: SavedStateHandle,
 ) :
     ViewModel(),
-    ContainerHost<MonsterDetailsState, MonsterDetailsSideEffect>,
+    ContainerHost<MonsterDetailsState, SideEffect>,
     MonsterDetailsRouter by router {
 
     override val container =
-        container<MonsterDetailsState, MonsterDetailsSideEffect>(
+        container<MonsterDetailsState, SideEffect>(
             initialState = State.Empty(),
             savedStateHandle = savedStateHandle,
             settings = Container.Settings(
@@ -40,13 +43,23 @@ class MonsterDetailsViewModel(
         ){
             intent {
                 repeatOnSubscription{
-                    getMonsterDetailsUseCase(monsterId).collect(this@intent::handleResult)
+                    getMonsterDetailsUseCase(monsterId).collect{ result ->
+                        handleResult(
+                            result = result,
+                            convertToState = { it }
+                        )
+                    }
                 }
             }
         }
 
     fun updateMonsterDetails() = intent {
-        getMonsterDetailsUseCase(monsterId).collect(this@intent::handleResult)
+        getMonsterDetailsUseCase(monsterId).collect{ result ->
+            handleResult(
+                result = result,
+                convertToState = { it }
+            )
+        }
     }
 
     fun deleteMonster() = intent {
@@ -91,44 +104,3 @@ class MonsterDetailsViewModel(
         }
     }
 }
-
-private suspend fun SimpleSyntax<MonsterDetailsState, MonsterDetailsSideEffect>.handleResult(result: Result<MonsterDetails>){
-    when(result){
-        is Result.Success -> reduce {
-            State.Success(value = result.value)
-        }
-        is Result.Loading -> postSideEffect(
-            MonsterDetailsSideEffect.Loading(progress = result.progress)
-        )
-        is Result.Error -> postSideEffect(
-            MonsterDetailsSideEffect.Error(
-                exception = result.exception,
-                message = result.message,
-            )
-        )
-        is Result.Failure -> postSideEffect(
-            MonsterDetailsSideEffect.Failure(message = result.message)
-        )
-    }
-}
-
-private suspend fun SimpleSyntax<MonsterDetailsState, MonsterDetailsSideEffect>.handleFinishableResult(result: FinishableResult){
-    when(result){
-        is Finished -> postSideEffect(
-            MonsterDetailsSideEffect.Finished
-        )
-        is Result.Loading -> postSideEffect(
-            MonsterDetailsSideEffect.Loading(progress = result.progress)
-        )
-        is Result.Error -> postSideEffect(
-            MonsterDetailsSideEffect.Error(
-                exception = result.exception,
-                message = result.message,
-            )
-        )
-        is Result.Failure -> postSideEffect(
-            MonsterDetailsSideEffect.Failure(message = result.message)
-        )
-    }
-}
-

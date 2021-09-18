@@ -31,4 +31,3 @@ data class Monster(
         fun randomList(size: Int = 10) = (1..size).map{ random()}
     }
 }
-

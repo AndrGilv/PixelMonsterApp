@@ -6,15 +6,15 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
-import com.example.pixelmonsterapp3.domain.entity.FinishableResult
-import com.example.pixelmonsterapp3.domain.entity.Finished
 import com.example.pixelmonsterapp3.domain.entity.Monster
-import com.example.pixelmonsterapp3.domain.entity.Result
 import com.example.pixelmonsterapp3.domain.usecase.DeleteAllMonstersUseCase
 import com.example.pixelmonsterapp3.domain.usecase.DeleteMonsterUseCase
 import com.example.pixelmonsterapp3.domain.usecase.GenerateRandomMonsterUseCase
 import com.example.pixelmonsterapp3.domain.usecase.GetGeneratedMonsterListFlowUseCase
+import com.example.pixelmonsterapp3.handleFinishableResult
+import com.example.pixelmonsterapp3.handleResult
 import com.example.pixelmonsterapp3.presentation.ParcelableList
+import com.example.pixelmonsterapp3.presentation.SideEffect
 import com.example.pixelmonsterapp3.presentation.State
 import com.example.pixelmonsterapp3.presentation.toParcelableList
 import dagger.assisted.Assisted
@@ -24,10 +24,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collect
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
-import org.orbitmvi.orbit.syntax.simple.SimpleSyntax
 import org.orbitmvi.orbit.syntax.simple.intent
-import org.orbitmvi.orbit.syntax.simple.postSideEffect
-import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.syntax.simple.repeatOnSubscription
 import org.orbitmvi.orbit.viewmodel.container
 
@@ -43,11 +40,11 @@ class MonsterListViewModel(
     savedStateHandle: SavedStateHandle,
 ) :
     ViewModel(),
-    ContainerHost<MonsterListState, MonsterListScreenSideEffect>,
+    ContainerHost<MonsterListState, SideEffect>,
     MonsterListScreenRouter by router {
 
     override val container =
-        container<MonsterListState, MonsterListScreenSideEffect>(
+        container<MonsterListState, SideEffect>(
             initialState = State.Empty(),
             savedStateHandle = savedStateHandle,
             settings = Container.Settings(
@@ -58,7 +55,12 @@ class MonsterListViewModel(
         ) {
             intent {
                 repeatOnSubscription {
-                    getGeneratedMonsterListFlowUseCase().collect(this@intent::handleResult)
+                    getGeneratedMonsterListFlowUseCase().collect {
+                        handleResult(
+                            result = it,
+                            convertToState = { it.toParcelableList() }
+                        )
+                    }
                 }
             }
         }
@@ -109,49 +111,5 @@ class MonsterListViewModel(
                 @Assisted defaultArgs: Bundle? = null,
             ): MonsterListFactory
         }
-    }
-}
-
-private suspend fun SimpleSyntax<MonsterListState, MonsterListScreenSideEffect>.handleFinishableResult(
-    result: FinishableResult,
-) {
-    when (result) {
-        is Finished -> postSideEffect(
-            MonsterListScreenSideEffect.Finished
-        )
-        is Result.Loading -> postSideEffect(
-            MonsterListScreenSideEffect.Loading(progress = result.progress)
-        )
-        is Result.Error -> postSideEffect(
-            MonsterListScreenSideEffect.Error(
-                exception = result.exception,
-                message = result.message,
-            )
-        )
-        is Result.Failure -> postSideEffect(
-            MonsterListScreenSideEffect.Failure(message = result.message)
-        )
-    }
-}
-
-private suspend fun SimpleSyntax<MonsterListState, MonsterListScreenSideEffect>.handleResult(
-    result: Result<List<Monster>>,
-) {
-    when (result) {
-        is Result.Success -> reduce {
-            State.Success(value = result.value.toParcelableList())
-        }
-        is Result.Loading -> postSideEffect(
-            MonsterListScreenSideEffect.Loading(progress = result.progress)
-        )
-        is Result.Error -> postSideEffect(
-            MonsterListScreenSideEffect.Error(
-                exception = result.exception,
-                message = result.message,
-            )
-        )
-        is Result.Failure -> postSideEffect(
-            MonsterListScreenSideEffect.Failure(message = result.message)
-        )
     }
 }
