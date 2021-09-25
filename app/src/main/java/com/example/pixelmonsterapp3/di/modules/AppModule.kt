@@ -2,12 +2,14 @@ package com.example.pixelmonsterapp3.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.example.monster_list.presentation.MonsterListScreenRouter
+import com.example.feature.monster.details.presentation.MonsterDetailsRouter
+import com.example.feature.monster.list.presentation.MonsterListScreenRouter
 import com.example.pixelmonsterapp3.di.annotations.IoCoroutineScope
 import com.example.pixelmonsterapp3.navigation.NavigatorImpl
 import com.example.pixelmonsterapp3.routers.MonsterDetailsRouterImpl
 import com.example.pixelmonsterapp3.routers.MonsterListScreenRouterImpl
 import com.example.pixelmonsterapp3.ui.MainActivity
+import com.example.shared.navigation.core.Navigator
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -24,37 +26,37 @@ abstract class AppModule {
         fun provideIoCoroutineScope() = CoroutineScope(Dispatchers.IO)
 
         @Provides
-        fun provideMonsterDataBase(context: Context): com.example.shared_monster_api.data.database.MonsterDatabase =
+        fun provideMonsterDataBase(context: Context): com.example.shared.monster.api.data.database.MonsterDatabase =
             Room.databaseBuilder(
                 context.applicationContext,
-                com.example.shared_monster_api.data.database.MonsterDatabase::class.java,
+                com.example.shared.monster.api.data.database.MonsterDatabase::class.java,
                 "monster_database"
             )
                 .fallbackToDestructiveMigration()
                 .build()
 
         @Provides
-        fun provideMonsterDao(db: com.example.shared_monster_api.data.database.MonsterDatabase): com.example.shared_monster_api.data.database.MonsterDao =
+        fun provideMonsterDao(db: com.example.shared.monster.api.data.database.MonsterDatabase): com.example.shared.monster.api.data.database.MonsterDao =
             db.monsterDao()
     }
 
     @Binds
-    abstract fun bindLocalMonsterDataSource(localMonsterDataSourceImpl: com.example.shared_monster_api.data.datasource.LocalMonsterDataSourceImpl): com.example.shared_monster_api.data.datasource.LocalMonsterDataSource
+    abstract fun bindLocalMonsterDataSource(localMonsterDataSourceImpl: com.example.shared.monster.api.data.datasource.LocalMonsterDataSourceImpl): com.example.shared.monster.api.data.datasource.LocalMonsterDataSource
 
     @Binds
-    abstract fun bindRemoteMonsterDataSource(remoteMonsterDataSourceImpl: com.example.shared_monster_api.data.datasource.RemoteMonsterDataSourceImpl): com.example.shared_monster_api.data.datasource.RemoteMonsterDataSource
+    abstract fun bindRemoteMonsterDataSource(remoteMonsterDataSourceImpl: com.example.shared.monster.api.data.datasource.RemoteMonsterDataSourceImpl): com.example.shared.monster.api.data.datasource.RemoteMonsterDataSource
 
     @Binds
-    abstract fun bindMonsterRepository(monsterRepositoryImpl: com.example.shared_monster_api.data.repository.MonsterRepositoryImpl): com.example.shared_monster_api.domain.repository.MonsterRepository
+    abstract fun bindMonsterRepository(monsterRepositoryImpl: com.example.shared.monster.api.data.repository.MonsterRepositoryImpl): com.example.shared.monster.api.domain.repository.MonsterRepository
 
     @Binds
-    abstract fun navigator(navigator: NavigatorImpl): com.example.shared_navigation_core.Navigator
+    abstract fun navigator(navigator: NavigatorImpl): Navigator
 
     @Binds
     abstract fun bindMonsterListScreenRouter(router: MonsterListScreenRouterImpl): MonsterListScreenRouter
 
     @Binds
-    abstract fun bindMonsterDetailsRouter(router: MonsterDetailsRouterImpl): com.example.feature_monster_details.presentation.MonsterDetailsRouter
+    abstract fun bindMonsterDetailsRouter(router: MonsterDetailsRouterImpl): MonsterDetailsRouter
 
     @ContributesAndroidInjector
     abstract fun contributeMainActivity(): MainActivity

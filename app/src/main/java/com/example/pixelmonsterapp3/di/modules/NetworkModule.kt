@@ -40,7 +40,7 @@ abstract class NetworkModule {
                 .build()
 
         @Provides
-        fun provideApiService(retrofit: Retrofit): com.example.shared_monster_api.data.network.MonsterApi =
-            retrofit.create(com.example.shared_monster_api.data.network.MonsterApi::class.java)
+        fun provideApiService(retrofit: Retrofit): com.example.shared.monster.api.data.network.MonsterApi =
+            retrofit.create(com.example.shared.monster.api.data.network.MonsterApi::class.java)
     }
 }

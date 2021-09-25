@@ -1,9 +1,9 @@
 package com.example.pixelmonsterapp3.routers
 
-import com.example.monster_list.presentation.MonsterListScreenRouter
+import com.example.feature.monster.list.presentation.MonsterListScreenRouter
 import com.example.pixelmonsterapp3.navigation.MonsterDetailsDestination
-import com.example.shared_navigation_core.BaseRouter
-import com.example.shared_navigation_core.Navigator
+import com.example.shared.navigation.core.BaseRouter
+import com.example.shared.navigation.core.Navigator
 import javax.inject.Inject
 
 // SomeFeatureRouterImpl

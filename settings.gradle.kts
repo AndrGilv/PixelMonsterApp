@@ -1,8 +1,8 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
@@ -13,9 +13,17 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "PixelMonsterApp3"
-include(":app")
-include(":feature-monster-list")
-include(":shared-ui-core")
-include(":shared-navigation-core")
-include(":feature-monster-details")
-include(":shared-monster-api")
+
+val modules = mapOf(
+    ":app" to "app",
+    ":feature-monster-list" to "feature/monster/list",
+    ":shared-ui-core" to "shared/ui/core",
+    ":shared-navigation-core" to "shared/navigation/core",
+    ":feature-monster-details" to "feature/monster/details",
+    ":shared-monster-api" to "shared/monster/api"
+)
+
+modules.forEach { name, path ->
+    include(name)
+    project(name).projectDir = file(path)
+}

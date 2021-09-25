@@ -3,8 +3,8 @@ package com.example.pixelmonsterapp3.navigation
 import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
-import com.example.shared_navigation_core.NavigationDestination
-import com.example.shared_navigation_core.argument
+import com.example.shared.navigation.core.NavigationDestination
+import com.example.shared.navigation.core.argument
 
 private const val MONSTER_ID_ARGS_KEY = "monster_id"
 

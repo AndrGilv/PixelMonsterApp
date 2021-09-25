@@ -2,8 +2,8 @@ package com.example.pixelmonsterapp3.navigation
 
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator.Extras
-import com.example.shared_navigation_core.Navigator
-import com.example.shared_navigation_core.NavigatorEvent
+import com.example.shared.navigation.core.Navigator
+import com.example.shared.navigation.core.NavigatorEvent
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject

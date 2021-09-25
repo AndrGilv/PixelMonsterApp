@@ -1,7 +1,7 @@
 package com.example.pixelmonsterapp3.di
 
-import com.example.feature_monster_details.presentation.MonsterDetailsViewModel
-import com.example.monster_list.presentation.MonsterListViewModel
+import com.example.feature.monster.details.presentation.MonsterDetailsViewModel
+import com.example.feature.monster.list.presentation.MonsterListViewModel
 import javax.inject.Inject
 
 class ViewModelFactories @Inject constructor(

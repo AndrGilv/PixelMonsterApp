@@ -6,16 +6,16 @@ import androidx.compose.ui.platform.LocalSavedStateRegistryOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.example.feature_monster_details.presentation.MonsterDetailsViewModel
-import com.example.feature_monster_details.ui.MonsterDetailsScreen
-import com.example.monster_list.MonsterListDestination
-import com.example.monster_list.presentation.MonsterListViewModel
-import com.example.monster_list.ui.MonsterListScreen
+import com.example.feature.monster.details.presentation.MonsterDetailsViewModel
+import com.example.feature.monster.details.ui.MonsterDetailsScreen
+import com.example.feature.monster.list.MonsterListDestination
+import com.example.feature.monster.list.presentation.MonsterListViewModel
+import com.example.feature.monster.list.ui.MonsterListScreen
 import com.example.pixelmonsterapp3.composable
 import com.example.pixelmonsterapp3.di.ViewModelFactories
 import com.example.pixelmonsterapp3.navigation.MonsterDetailsDestination
-import com.example.shared_navigation_core.Navigator
-import com.example.shared_navigation_core.NavigatorEvent
+import com.example.shared.navigation.core.Navigator
+import com.example.shared.navigation.core.NavigatorEvent
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 

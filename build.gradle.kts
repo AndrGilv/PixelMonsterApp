@@ -1,5 +1,3 @@
-tasks {
-    val clean by registering(Delete::class) {
-        delete(buildDir)
-    }
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
 }
