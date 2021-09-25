@@ -3,19 +3,19 @@ object Dependencies {
     object Project {
 
         object Feature {
-            const val monsterList = ":feature_monster_list"
-            const val monsterDetails = ":feature_monster_details"
+            const val monsterList = ":feature-monster-list"
+            const val monsterDetails = ":feature-monster-details"
         }
 
         object Shared {
-            const val ui_core = ":shared_ui_core"
-            const val navigation_core = ":shared_navigation_core"
+            const val ui_core = ":shared-ui-core"
+            const val navigation_core = ":shared-navigation-core"
 
-            const val monster_api = ":shared_monster_api"
+            const val monster_api = ":shared-monster-api"
         }
 
         object Utils {
-            const val utils_core = ":utils_core"
+            const val utils_core = ":utils-core"
         }
     }
 
