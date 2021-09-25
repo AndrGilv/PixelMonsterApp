@@ -6,7 +6,7 @@ import androidx.navigation.Navigator
 sealed class NavigatorEvent {
     object NavigateUp : NavigatorEvent()
 
-    object DefaultBackNavigation: NavigatorEvent()
+    object DefaultBackNavigation : NavigatorEvent()
 
     data class NavigateBack(
         val route: String,
@@ -17,8 +17,8 @@ sealed class NavigatorEvent {
     data class Direction(
         val route: String,
         private val navOptionsBoulder: (NavOptions.Builder.() -> Unit)? = null,
-        private val navigatorExtrasBuilder: (Navigator.Extras.()->Unit)? = null,
-    ) : NavigatorEvent(){
+        private val navigatorExtrasBuilder: (Navigator.Extras.() -> Unit)? = null,
+    ) : NavigatorEvent() {
         fun createNavOptions(): NavOptions? = navOptionsBoulder?.let { builder ->
             NavOptions.Builder().apply {
                 builder()

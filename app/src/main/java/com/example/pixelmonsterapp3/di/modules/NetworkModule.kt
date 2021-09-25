@@ -44,3 +44,4 @@ abstract class NetworkModule {
             retrofit.create(com.example.shared.monster.api.data.network.MonsterApi::class.java)
     }
 }
+

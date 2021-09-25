@@ -1,4 +1,4 @@
-package com.example.shared.ui
+package com.example.shared.ui.core.sreen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

@@ -53,11 +53,11 @@ android {
 dependencies {
     implementation(project(Dependencies.Project.Feature.monsterList))
     implementation(project(Dependencies.Project.Feature.monsterDetails))
-    implementation(project(Dependencies.Project.Shared.ui_core))
-    implementation(project(Dependencies.Project.Shared.navigation_core))
-    implementation(project(Dependencies.Project.Shared.monster_api))
+    implementation(project(Dependencies.Project.Shared.uiCore))
+    implementation(project(Dependencies.Project.Shared.navigationCore))
+    implementation(project(Dependencies.Project.Shared.monsterApi))
 
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+//    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Dependencies.AndroidX.Core.coreKtx)
 
     implementation(Dependencies.AndroidX.Compose.ui)
@@ -69,9 +69,9 @@ dependencies {
 
     implementation(Dependencies.AndroidX.Activity.activityCompose)
 
-    testImplementation(Dependencies.Junit.core)
-    androidTestImplementation(Dependencies.AndroidX.TestExt.junit)
-    androidTestImplementation(Dependencies.AndroidX.TestEspresso.espressoCore)
+//    testImplementation(Dependencies.Junit.core)
+//    androidTestImplementation(Dependencies.AndroidX.TestExt.junit)
+//    androidTestImplementation(Dependencies.AndroidX.TestEspresso.espressoCore)
 
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.daggerCompiler)
@@ -82,29 +82,24 @@ dependencies {
 
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleRuntimeKtx)
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelKtx)
-    implementation(Dependencies.AndroidX.Lifecycle.lifecycleRuntimeKtx)
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleLiveDataKtx)
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleLiveDataCoreKtx)
-    implementation(Dependencies.AndroidX.Lifecycle.lifecycleReactiveStreamsKtx)
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelCompose)
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelSavedState)
 
+    //эти зависимосте здесь скорее всего не нужны и нужно будет их перененсти в другой модуль
     implementation(Dependencies.AndroidX.Room.roomKtx)
     implementation(Dependencies.AndroidX.Room.roomRuntime)
     kapt(Dependencies.AndroidX.Room.roomCompiler)
     androidTestImplementation(Dependencies.AndroidX.Room.roomTesting)
-
-    implementation(Dependencies.AndroidX.Collections.collectionKtx)
-    implementation(Dependencies.AndroidX.Core.coreKtx)
-    implementation(Dependencies.AndroidX.Lifecycle.lifecycleLiveDataCoreKtx)
-    implementation(Dependencies.AndroidX.Lifecycle.lifecycleReactiveStreamsKtx)
-    implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelCompose)
+//
+//    implementation(Dependencies.AndroidX.Collections.collectionKtx)
 
     implementation(Dependencies.AndroidX.Navigation.navigationRuntimeKtx)
-    implementation(Dependencies.AndroidX.Navigation.navigationFragmentKtx)
     implementation(Dependencies.AndroidX.Navigation.navigationUiKtx)
     implementation(Dependencies.AndroidX.Navigation.composeNavigation)
 
+    //эти зависимосте здесь скорее всего не нужны и нужно будет их перененсти в другой модуль
     implementation(Dependencies.Retrofit2.retrofit)
     implementation(Dependencies.Retrofit2.converterMoshi)
     implementation(Dependencies.OkHttp3.okhttp)
@@ -112,5 +107,5 @@ dependencies {
 
     implementation(Dependencies.Orbit.viewModel)
 
-    implementation(Dependencies.Accompanist.systemUiController)
+//    implementation(Dependencies.Accompanist.systemUiController)
 }

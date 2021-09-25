@@ -1,4 +1,4 @@
-package com.example.shared.ui
+package com.example.shared.ui.core.sreen
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.shape.CutCornerShape

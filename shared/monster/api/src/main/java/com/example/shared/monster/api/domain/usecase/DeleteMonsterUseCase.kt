@@ -10,7 +10,7 @@ import javax.inject.Inject
  * **/
 class DeleteMonsterUseCase @Inject constructor(
     private val monstersRepository: MonsterRepository,
-){
+) {
     operator fun invoke(id: Int): Flow<FinishableResult> =
         monstersRepository.deleteMonster(id)
 }

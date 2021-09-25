@@ -8,14 +8,14 @@ object Dependencies {
         }
 
         object Shared {
-            const val ui_core = ":shared-ui-core"
-            const val navigation_core = ":shared-navigation-core"
+            const val uiCore = ":shared-ui-core"
+            const val navigationCore = ":shared-navigation-core"
 
-            const val monster_api = ":shared-monster-api"
+            const val monsterApi = ":shared-monster-api"
         }
 
         object Utils {
-            const val utils_core = ":utils-core"
+            const val utilsCore = ":utils-core"
         }
     }
 

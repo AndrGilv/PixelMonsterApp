@@ -11,7 +11,7 @@ import javax.inject.Inject
  * **/
 class GetMonsterDetailsUseCase @Inject constructor(
     private val monstersRepository: MonsterRepository,
-){
+) {
     operator fun invoke(id: Int): Flow<Result<MonsterDetails>> =
         monstersRepository.getMonsterDetails(id)
 }

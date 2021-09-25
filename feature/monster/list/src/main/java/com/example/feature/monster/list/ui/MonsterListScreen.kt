@@ -23,10 +23,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.feature.monster.list.presentation.MonsterListState
 import com.example.shared.monster.api.domain.entity.Monster
-import com.example.shared.ui.ScreenScaffold
 import com.example.shared.ui.core.TestData
 import com.example.shared.ui.core.presentation.SideEffect
 import com.example.shared.ui.core.presentation.State
+import com.example.shared.ui.core.sreen.ScreenScaffold
 import com.example.shared.ui.core.theme.PixelMonsterApp3Theme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
