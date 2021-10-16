@@ -108,7 +108,7 @@ object Dependencies {
     }
 
     object AndroidPlugin {
-        const val VERSION = "7.1.0-alpha13"
+        const val VERSION = "7.1.0-beta01"
     }
 
     object Retrofit2 {
