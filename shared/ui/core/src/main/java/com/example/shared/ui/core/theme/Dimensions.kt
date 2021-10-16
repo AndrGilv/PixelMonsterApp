@@ -5,7 +5,6 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-
 data class AppDimensions(
     val largePadding: Dp,
     val defaultPadding: Dp,
@@ -25,13 +24,13 @@ enum class DimensionTheme {
 val classicDimensions = classicDimensions()
 
 fun classicDimensions(
-    largePadding: Dp = 16.dp,
-    defaultPadding: Dp = 8.dp,
-    smallPadding: Dp = 4.dp,
-    extraSmallPadding: Dp = 2.dp,
-    largeSpacing: Dp = 8.dp,
-    defaultSpacing: Dp = 4.dp,
-    smallSpacing: Dp = 2.dp,
+    largePadding: Dp = 24.dp,
+    defaultPadding: Dp = 16.dp,
+    smallPadding: Dp = 8.dp,
+    extraSmallPadding: Dp = 4.dp,
+    largeSpacing: Dp = 16.dp,
+    defaultSpacing: Dp = 8.dp,
+    smallSpacing: Dp = 4.dp,
 ) = AppDimensions(
     largePadding = largePadding,
     defaultPadding = defaultPadding,

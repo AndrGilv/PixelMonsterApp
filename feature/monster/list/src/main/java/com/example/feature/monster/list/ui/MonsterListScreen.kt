@@ -1,12 +1,9 @@
 package com.example.feature.monster.list.ui
 
 import android.content.res.Configuration
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
@@ -59,17 +56,19 @@ fun MonsterListScreen(
         }
     }
 ) { state ->
-
-    LazyColumn(modifier = Modifier.padding(16.dp)) {
-        item {
-
-            Text(
-                text = "list:",
-                modifier = Modifier.padding(bottom = 4.dp),
-            )
-        }
-        if (state is State.Success) {
-            items(state.value) { monster ->
+    AnimatedVisibility(visible = state is State.Success) {
+        require(state is State.Success)
+        LazyColumn {
+            item {
+                Text(
+                    text = "list:",
+                    modifier = Modifier.padding(AppTheme.dimensions.largePadding)
+                )
+            }
+            items(
+                items = state.value,
+                key = { monster -> monster.id }
+            ) { monster ->
                 MonsterViewHolder(
                     monster = monster,
                     onClicked = navigateToDetails,
@@ -88,12 +87,17 @@ fun MonsterViewHolder(
 ) {
     Card(
         modifier = Modifier
-            .padding(top = 8.dp)
+            .padding(horizontal = AppTheme.dimensions.largePadding,
+                vertical = AppTheme.dimensions.extraSmallPadding)
+            .fillMaxWidth()
             .clickable {
                 onClicked(monster.id)
-            }
+            },
+        shape = AppTheme.shapes.cardShape,
+        backgroundColor = AppTheme.colors.surface,
+        contentColor = AppTheme.colors.onSurface,
     ) {
-        Row(modifier = Modifier.padding(8.dp)) {
+        Row(modifier = Modifier.padding(AppTheme.dimensions.defaultPadding)) {
             Column {
                 monster.run {
                     Text(text = "id: $id", modifier = Modifier.padding(bottom = 2.dp))
@@ -112,7 +116,8 @@ fun MonsterViewHolder(
                                 * endurance: ${attributes.endurance}
                                 * intelligence: ${attributes.intelligence}
                         """.trimIndent(),
-                        modifier = Modifier.padding(bottom = 2.dp)
+                        modifier = Modifier.padding(bottom = 2.dp),
+                        color = AppTheme.colors.onSurface,
                     )
                     Text(text = "level: $level", modifier = Modifier.padding(bottom = 2.dp))
                 }

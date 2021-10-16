@@ -23,6 +23,7 @@ import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.repeatOnSubscription
 import org.orbitmvi.orbit.viewmodel.container
+import javax.inject.Singleton
 
 typealias MonsterDetailsState = State<MonsterDetails>
 
@@ -101,6 +102,7 @@ class MonsterDetailsViewModel(
         }
 
         @AssistedFactory
+        @Singleton
         interface MonsterDetailsAssistedFactory {
             fun create(
                 @Assisted monsterId: Int,

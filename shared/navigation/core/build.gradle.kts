@@ -32,12 +32,12 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    /*buildFeatures {
+    buildFeatures {
         compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Dependencies.AndroidX.Compose.VERSION
-    }*/
+    }
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -50,16 +50,16 @@ android {
 
 dependencies {
 //    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-//    implementation(Dependencies.AndroidX.Core.coreKtx)
+    implementation(Dependencies.AndroidX.Core.coreKtx)
 
-//    implementation(Dependencies.AndroidX.Compose.ui)
-//    implementation(Dependencies.AndroidX.Compose.material)
-//    implementation(Dependencies.AndroidX.Compose.uiToolingPreview)
-//    implementation(Dependencies.AndroidX.Compose.compiler)
-//    androidTestImplementation(Dependencies.AndroidX.Compose.uiTestJunit)
-//    debugImplementation(Dependencies.AndroidX.Compose.uiTooling)
-//
-//    implementation(Dependencies.AndroidX.Activity.activityCompose)
+    implementation(Dependencies.AndroidX.Compose.ui)
+    implementation(Dependencies.AndroidX.Compose.material)
+    implementation(Dependencies.AndroidX.Compose.uiToolingPreview)
+    implementation(Dependencies.AndroidX.Compose.compiler)
+    androidTestImplementation(Dependencies.AndroidX.Compose.uiTestJunit)
+    debugImplementation(Dependencies.AndroidX.Compose.uiTooling)
+
+    implementation(Dependencies.AndroidX.Activity.activityCompose)
 
 //    testImplementation(Dependencies.Junit.core)
 //    androidTestImplementation(Dependencies.AndroidX.TestExt.junit)
@@ -70,15 +70,15 @@ dependencies {
     implementation(Dependencies.Dagger.daggerAndroidSupport)
     kapt(Dependencies.Dagger.daggerAndroidProcessor)*/
 
-//    implementation(Dependencies.KotlinX.kotlinxCoroutinesAndroid)
+    implementation(Dependencies.KotlinX.kotlinxCoroutinesAndroid)
 
-    /*implementation(Dependencies.AndroidX.Lifecycle.lifecycleRuntimeKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleRuntimeKtx)
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelKtx)
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleLiveDataKtx)
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleLiveDataCoreKtx)
 
     implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelCompose)
-    implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelSavedState)*/
+    implementation(Dependencies.AndroidX.Lifecycle.lifecycleViewModelSavedState)
 
 //    implementation(Dependencies.AndroidX.Room.roomKtx)
 //    implementation(Dependencies.AndroidX.Room.roomRuntime)
@@ -98,5 +98,5 @@ dependencies {
 //
 //    implementation(Dependencies.Orbit.viewModel)
 //
-//    implementation(Dependencies.Accompanist.systemUiController)
+//   implementation(Dependencies.Accompanist.systemUiController)
 }

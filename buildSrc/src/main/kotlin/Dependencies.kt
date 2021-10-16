@@ -36,7 +36,7 @@ object Dependencies {
         }
 
         object Compose {
-            const val VERSION = "1.1.0-alpha03"
+            const val VERSION = "1.1.0-alpha06"
 
             const val ui = "androidx.compose.ui:ui:$VERSION"
             const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$VERSION"
@@ -49,7 +49,8 @@ object Dependencies {
         object Lifecycle {
             private const val VERSION = "2.4.0-alpha03"
             const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$VERSION"
-            const val lifecycleViewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
+            const val lifecycleViewModelCompose =
+                "androidx.lifecycle:lifecycle-viewmodel-compose:$VERSION"
             const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$VERSION"
             const val lifecycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$VERSION"
             const val lifecycleLiveDataCoreKtx = "androidx.lifecycle:lifecycle-livedata-core-ktx:$VERSION"
@@ -58,12 +59,12 @@ object Dependencies {
         }
 
         object Activity {
-            private const val VERSION = "1.3.1"
+            private const val VERSION = "1.4.0-rc01"
             const val activityCompose = "androidx.activity:activity-compose:$VERSION"
         }
 
         object Room {
-            private const val VERSION = "2.4.0-alpha04"
+            private const val VERSION = "2.4.0-beta01"
             const val roomKtx = "androidx.room:room-ktx:$VERSION" // для Flow
             const val roomRuntime = "androidx.room:room-runtime:$VERSION" // для Flow
             const val roomCompiler = "androidx.room:room-compiler:$VERSION" // kapt
@@ -76,7 +77,7 @@ object Dependencies {
         }
 
         object Navigation {
-            private const val VERSION = "2.4.0-alpha08"
+            private const val VERSION = "2.4.0-alpha10"
             const val composeNavigation = "androidx.navigation:navigation-compose:$VERSION"
             const val navigationRuntimeKtx = "androidx.navigation:navigation-runtime-ktx:$VERSION"
             const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$VERSION"
@@ -90,7 +91,7 @@ object Dependencies {
     }
 
     object Dagger {
-        private const val VERSION = "2.38.1"
+        private const val VERSION = "2.39.1"
         const val core = "com.google.dagger:dagger:$VERSION"
         const val daggerCompiler = "com.google.dagger:dagger-compiler:$VERSION"
         const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:$VERSION"
@@ -98,13 +99,13 @@ object Dependencies {
     }
 
     object KotlinX {
-        private const val VERSION = "1.5.1"
+        private const val VERSION = "1.5.2"
         const val kotlinxCoroutinesAndroid =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:$VERSION"
     }
 
     object KotlinPlugin {
-        const val VERSION = "1.5.30"
+        const val VERSION = "1.5.31"
     }
 
     object AndroidPlugin {
@@ -130,6 +131,11 @@ object Dependencies {
 
     object Accompanist {
         private const val VERSION = "0.18.0"
-        const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:$VERSION"
+        const val systemUiController =
+            "com.google.accompanist:accompanist-systemuicontroller:$VERSION"
+    }
+
+    object Ksp {
+        const val VERSION = "1.6.0-RC-1.0.0"
     }
 }

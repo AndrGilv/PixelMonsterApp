@@ -1,12 +1,17 @@
 package com.example.shared.navigation.core
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.navigation.NavOptions
 import kotlinx.coroutines.flow.Flow
 
 // QRouter
+@Stable
 interface Navigator {
 
-    val destinations: Flow<NavigatorEvent>
+    val destinations: Set<NavigationDestination>
+
+    val navigationEventsFlow: Flow<NavigatorEvent>
 
     fun navigateUp(): Boolean
 
@@ -32,4 +37,7 @@ interface Navigator {
     ): Boolean
 
     fun navigateBack(): Boolean
+
+    @Composable
+    fun Content()
 }

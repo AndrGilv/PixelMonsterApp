@@ -1,11 +1,13 @@
 package com.example.pixelmonsterapp3.di.modules
 
+import com.example.shared.monster.api.data.network.MonsterApi
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module()
 abstract class NetworkModule {
@@ -19,11 +21,13 @@ abstract class NetworkModule {
                 .addInterceptor(AuthInterceptor(tokenDataSource))
                 .build()*/
         @Provides
+        @Singleton
         fun provideOkHttpClient(): OkHttpClient =
             OkHttpClient.Builder()
                 .build()
 
         @Provides
+        @Singleton
         fun provideMoshi(): Moshi = Moshi.Builder()
             /*.add(KotlinJsonAdapterFactory())
             .add(LocalDateTimeAdapter())
@@ -31,6 +35,7 @@ abstract class NetworkModule {
             .build()
 
         @Provides
+        @Singleton
         fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit =
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -40,8 +45,8 @@ abstract class NetworkModule {
                 .build()
 
         @Provides
-        fun provideApiService(retrofit: Retrofit): com.example.shared.monster.api.data.network.MonsterApi =
-            retrofit.create(com.example.shared.monster.api.data.network.MonsterApi::class.java)
+        @Singleton
+        fun provideApiService(retrofit: Retrofit): MonsterApi =
+            retrofit.create(MonsterApi::class.java)
     }
 }
-

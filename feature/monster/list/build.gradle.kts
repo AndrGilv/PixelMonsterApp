@@ -91,9 +91,9 @@ dependencies {
 
 //    implementation(Dependencies.AndroidX.Collections.collectionKtx)
 
-//    implementation(Dependencies.AndroidX.Navigation.navigationRuntimeKtx)
-//    implementation(Dependencies.AndroidX.Navigation.navigationUiKtx)
-//    implementation(Dependencies.AndroidX.Navigation.composeNavigation)
+    implementation(Dependencies.AndroidX.Navigation.navigationRuntimeKtx)
+    implementation(Dependencies.AndroidX.Navigation.navigationUiKtx)
+    implementation(Dependencies.AndroidX.Navigation.composeNavigation)
 
     /*implementation(Dependencies.Retrofit2.retrofit)
     implementation(Dependencies.Retrofit2.converterMoshi)

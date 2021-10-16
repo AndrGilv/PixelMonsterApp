@@ -27,6 +27,7 @@ import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.repeatOnSubscription
 import org.orbitmvi.orbit.viewmodel.container
+import javax.inject.Singleton
 
 typealias MonsterListState = State<ParcelableList<Monster>>
 
@@ -105,6 +106,7 @@ class MonsterListViewModel(
         }
 
         @AssistedFactory
+        @Singleton
         interface MonsterListAssistedFactory {
             fun create(
                 @Assisted owner: SavedStateRegistryOwner,

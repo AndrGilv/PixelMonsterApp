@@ -6,10 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Singleton
 
 @Dao
-@Singleton
 interface MonsterDao {
 
     @Query("SELECT * FROM monster ORDER BY creation_date")

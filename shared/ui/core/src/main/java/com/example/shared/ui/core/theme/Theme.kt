@@ -77,7 +77,7 @@ fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     typographyTheme: TypographyTheme = TypographyTheme.CLASSIC,
     dimensionTheme: DimensionTheme = DimensionTheme.CLASSIC,
-    shapesTheme: ShapesTheme = ShapesTheme.ROUNDED,
+    shapesTheme: ShapesTheme = ShapesTheme.CUT,
     themedTextTheme: ThemedTextTheme = ThemedTextTheme.CLASSIC,
     themedResourcesTheme: ThemedResourcesTheme = ThemedResourcesTheme.CLASSIC,
     content: @Composable () -> Unit,

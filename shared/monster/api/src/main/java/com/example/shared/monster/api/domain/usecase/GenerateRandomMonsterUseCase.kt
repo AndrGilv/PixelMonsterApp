@@ -4,11 +4,13 @@ import com.example.shared.monster.api.domain.entity.FinishableResult
 import com.example.shared.monster.api.domain.repository.MonsterRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.random.Random
 
 /**
  *  () -> Flow<Result< Unit >>
  * **/
+@Singleton
 class GenerateRandomMonsterUseCase @Inject constructor(
     private val monsterRepository: MonsterRepository,
 ) {

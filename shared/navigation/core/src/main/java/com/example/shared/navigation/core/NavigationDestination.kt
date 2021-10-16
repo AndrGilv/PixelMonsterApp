@@ -1,26 +1,35 @@
 package com.example.shared.navigation.core
 
 import android.os.Bundle
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
+import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavArgumentBuilder
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDeepLink
-import androidx.navigation.compose.NamedNavArgument
-import androidx.navigation.compose.navArgument
+import androidx.navigation.navArgument
 
-abstract class NavigationDestination(
-    protected val domain: String,
-    val arguments: Map<String, NamedNavArgument> = emptyMap(),
-    val deepLinks: List<NavDeepLink> = emptyList(),
-) {
+@Stable
+abstract class NavigationDestination {
 
-    val name: String = constructRoute(arsList = arguments.keys.map { "{$it}" })
+    open val startDestination: Boolean = false
+    open val domain: String =
+        this::class.simpleName ?: throw IllegalStateException("destination name not set")
+    open val arguments: Map<String, NamedNavArgument> = emptyMap()
+    open val deepLinks: List<NavDeepLink> = emptyList()
 
-    protected fun constructRoute(vararg ars: String) =
-        "$domain/${ars.joinToString(separator = "/")}"
+    val name: String by lazy { constructRoute(ars = arguments.keys.map { "{$it}" }.toTypedArray()) }
 
-    protected fun constructRoute(arsList: List<String>) =
-        "$domain/${arsList.joinToString(separator = "/")}"
+    protected fun constructRoute(vararg ars: String): String {
+        return if (ars.isEmpty()) {
+            domain
+        } else {
+            ars.joinToString(separator = "/", prefix = "$domain/")
+        }
+    }
 
-    protected fun constructRoute() = domain
+    @Composable
+    abstract fun Content(backStackEntry: NavBackStackEntry)
 }
 
 typealias Args = Bundle?
@@ -30,3 +39,6 @@ fun argument(
     builder: NavArgumentBuilder.() -> Unit,
 ): Pair<String, NamedNavArgument> =
     name to navArgument(name, builder)
+
+fun Args.getInt(key: String) =
+    this?.getInt(key) ?: throw IllegalStateException("argument $key not set")

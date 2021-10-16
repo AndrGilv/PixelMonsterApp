@@ -38,7 +38,7 @@ fun roundedShapes(
 val cutShapes = cutShapes()
 
 fun cutShapes(
-    cardShape: Shape = CutCornerShape(8.dp),
+    cardShape: Shape = CutCornerShape(16.dp),
     bottomShite: Shape = CutCornerShape(topStart = 8.dp, topEnd = 8.dp),
     drawerShape: Shape = CutCornerShape(topEnd = 8.dp, bottomEnd = 8.dp),
     appBarShape: Shape = CutCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp),
@@ -51,4 +51,4 @@ fun cutShapes(
 )
 
 val LocalAppShapes: ProvidableCompositionLocal<AppShapes> =
-    staticCompositionLocalOf { roundedShapes }
+    staticCompositionLocalOf { cutShapes }
