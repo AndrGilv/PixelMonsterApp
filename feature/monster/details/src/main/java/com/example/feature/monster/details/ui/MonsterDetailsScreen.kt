@@ -21,7 +21,7 @@ import com.example.shared.ui.core.TestData
 import com.example.shared.ui.core.presentation.SideEffect
 import com.example.shared.ui.core.presentation.State
 import com.example.shared.ui.core.sreen.ScreenScaffold
-import com.example.shared.ui.core.theme.PixelMonsterApp3Theme
+import com.example.shared.ui.core.theme.AppTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -125,7 +125,7 @@ fun EmptyMonsterDetailsViewHolder() {
 )
 @Composable
 fun MonsterDetailsPreview() {
-    PixelMonsterApp3Theme {
+    AppTheme {
         MonsterDetailsScreen(
             stateFlow = MutableStateFlow(State.Success(value = TestData.testMonsterDetails)),
             sideEffectFlow = flowOf(),

@@ -27,7 +27,7 @@ import com.example.shared.ui.core.TestData
 import com.example.shared.ui.core.presentation.SideEffect
 import com.example.shared.ui.core.presentation.State
 import com.example.shared.ui.core.sreen.ScreenScaffold
-import com.example.shared.ui.core.theme.PixelMonsterApp3Theme
+import com.example.shared.ui.core.theme.AppTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -62,6 +62,7 @@ fun MonsterListScreen(
 
     LazyColumn(modifier = Modifier.padding(16.dp)) {
         item {
+
             Text(
                 text = "list:",
                 modifier = Modifier.padding(bottom = 4.dp),
@@ -133,7 +134,7 @@ fun MonsterViewHolder(
     showSystemUi = true
 )
 fun MonsterListScreenPreview() {
-    PixelMonsterApp3Theme {
+    AppTheme {
         MonsterListScreen(
             stateFlow = MutableStateFlow(
                 State.Success(value = TestData.testMonsterList)
